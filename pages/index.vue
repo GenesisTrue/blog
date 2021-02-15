@@ -2,7 +2,7 @@
   <div class="wrapper-content wrapper-content--fixed">
 
     <promo/>
-    <intro title="My lasts posts:"/>
+    <!-- <intro title="My lasts posts:"/> -->
     <postsList :posts="postsLoaded"/>
     <contacts/>
 

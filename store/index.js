@@ -37,6 +37,7 @@ export const actions = {
   nuxtServerInit({commit}, context) {
     return axios.get('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts.json')
       .then(res => {
+        debugger
         const postsArray = []
         for(let key in res.data) {
           postsArray.push( { ...res.data[key], id: key} )
@@ -59,8 +60,6 @@ export const actions = {
     })
     .catch(e => {
       console.log(e.message)
-
-      
     })
   },
 
@@ -77,7 +76,7 @@ export const actions = {
   addComment({commit}, comment) {
     return axios.post('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json', comment)
     .then(res => {
-      console.log(res)
+        console.log(res)
       commit('addComment', { ...comment, id: res.data.name })
     })
     .catch(e => {
@@ -90,7 +89,8 @@ export const actions = {
 export const getters = {
   getPostsLoaded(state) {
     return state.postsLoaded
-  }
+  },
+
 }
 
 
