@@ -8,7 +8,7 @@
         </div>
         <div class="text">
           Released under the MIT License <br> <br>
-          Copyright © 2014-2021 Genesis
+          Copyright © 2021-2021 Genesis
         </div>
       </div>
   </footer>

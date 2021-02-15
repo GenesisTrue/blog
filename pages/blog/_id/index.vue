@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
    <post :post="post"/>
+   <myHr></myHr>
    <comments :comments="comments"/>
    <newComment :postId="$route.params.id"/>
   </div>  
@@ -14,21 +15,24 @@ import axios from 'axios'
 import post from '~/components/Blog/Post'
 import newComment from '~/components/Comments/NewComment'
 import comments from '~/components/Comments/Comments'
+import myHr from '~/components/Hr/MyHr'
 
 
 
 export default {
-  components: { post, comments, newComment },
+  components: { post, comments, newComment, myHr },
 
   async asyncData(context) {
     let [post, comments] = await Promise.all([
       axios.get(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts/${context.params.id}.json`),
       axios.get(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json`)
     ])
-
+    // console.log('post==========',post)
+    // console.log('comments',comments)
+    
     let commentsArrayRes = Object.values(comments.data)
       .filter(comment => (comment.postId === context.params.id && comment.publish))
-
+    
     return {
       post: post.data,
       
@@ -39,8 +43,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 
 
 .post {

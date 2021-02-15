@@ -31,6 +31,7 @@ export default {
         descr: '',
         img: '',
         content: '',
+        date: ''
         
       }
     }
@@ -38,6 +39,10 @@ export default {
 
   methods: {
     save() {
+      
+      this.post.date = new Date().toLocaleString()
+      console.log( this.post.date )
+      
       this.$emit('submit', this.post)
     },
 

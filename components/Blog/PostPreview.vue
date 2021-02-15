@@ -3,7 +3,7 @@
     <img :src="post.img" :alt="post.title">
     <div class="post-content">
       <h3 class="title">{{ post.title }}</h3> 
-      <!-- <p>{{ post.descr }}</p> -->
+      <p>📅 {{ post.date }}</p>
     </div>
     
   </nuxt-link>
@@ -33,7 +33,9 @@ export default {
 
 <style lang="scss">
 .post-preview {
-  max-width: 32%;
+  // max-width: 32%;
+  width: 400px;
+  height: 396px;
   padding: 16px;
   margin-bottom: 20px;
   text-align: center;
@@ -46,17 +48,18 @@ export default {
     }
   }
   .title {
-    height: 84px;
+    // height: 84px;
     text-align: left;
     padding: 0 16px;
     margin-top: 20px;
+    margin-bottom: 5px;
   }
   .post-content {
-  p {
-    padding: 10px;
-    color: #999;
-    text-align: justify;
-  }
+    p {
+      padding: 10px 16px;
+      color: #999;
+      text-align: justify;
+    }
   }
 }
 </style>

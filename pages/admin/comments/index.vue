@@ -40,6 +40,8 @@ export default {
     loadComments() {
       axios.get('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json')
         .then(res => {
+          console.log(res)
+          
           let commentsArray = []
           Object.keys(res.data).forEach(key => {
             const comment = res.data[key]

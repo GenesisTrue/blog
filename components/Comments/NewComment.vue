@@ -46,12 +46,13 @@ export default {
       this.$store.dispatch('addComment', {
         postId: this.postId,
         publish: false,
+        date: new Date().toLocaleString(),
         ...this.comment
       })
       .then(() => {
-        this.message = 'Submited'
-        this.name = ''
-        this.text = ''
+        this.message = `Submited! Your comment is being verified`
+        this.comment.name = ''
+        this.comment.text = ''
       })
       .catch(e => console.log(e.message))
 
