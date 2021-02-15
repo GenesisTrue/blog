@@ -1,15 +1,15 @@
 <template>
   <section class="new-post">
     <div class="container">
-      <form @submit.prevent="">
+      <form @submit.prevent="onSubmit">
         <AppInput v-model="post.title"> Title: </AppInput>
         <AppInput v-model="post.descr"> Descr: </AppInput>
         <AppInput v-model="post.img"> Img: </AppInput>
         <AppTextArea v-model="post.content"> Content: </AppTextArea>
 
         <div class="controls">
-          <AppButton class="btnDanger" @click="cancel">Cancel</AppButton>
-          <AppButton class="btn btnPrimary" @click="save">Save</AppButton>
+          <div class="btn btnDanger" @click="cancel"> Cancel </div>
+          <AppButton @click="onSubmit"> Save </AppButton>
         </div>
       </form>
     </div>
@@ -38,16 +38,14 @@ export default {
   },
 
   methods: {
-    save() {
-      
+    onSubmit() {
       this.post.date = new Date().toLocaleString()
       console.log( this.post.date )
-      
       this.$emit('submit', this.post)
     },
 
     cancel() {
-      this.$router.push('/admin/')
+      this.$router.push('/admin')
     }
     
   },

@@ -3,7 +3,8 @@ import axios from 'axios'
 
 export const state = () => ({
   postsLoaded: [],
-  commentsLoaded: []
+  token: null
+
 })
 
 
@@ -14,7 +15,6 @@ export const mutations = {
   },
 
   addPost(state, post) {
-    console.log(post)
     state.postsLoaded.push(post)
   },
 
@@ -24,16 +24,21 @@ export const mutations = {
   },
 
   addComment(state, comment) {
-    console.log(comment)
     state.commentsLoaded.push(comment)
-    
+  },
+
+  setToken(state, token) {
+    state.token =  token
+  },
+
+  destroyToken(state){
+    state.token = null
   }
 
 }
 
 
 export const actions = {
-  
   nuxtServerInit({commit}, context) {
     return axios.get('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts.json')
       .then(res => {
@@ -44,44 +49,46 @@ export const actions = {
         }
         commit('setPosts', postsArray)
       })
-      .catch(e => {
-        console.log(e.message)
-      })   
+      .catch(e => console.log(e.message)) 
   },
 
+  authUser({commit}, authData) {
+    const key = 'AIzaSyCKEXSNW-WSFyiduEoRNzwI52DSIVBDZqs'
+
+    return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`, { 
+      email: authData.email,
+      password: authData.password,
+      returnSecureToken: true
+    })
+    .then(res => commit('setToken', res.data.idToken))
+    .catch(e => console.log(e.message))
+  },
+
+  logoutUser({commit}) {
+    console.log('Destroy')
+    
+    commit('destroyToken')
+  },
 
   addPost({commit}, post) {
-    console.log('post', post)
-    debugger
     return axios.post('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts.json', post)
     .then(res => {
-      console.log(res)
       commit('addPost', { ...post, id: res.data.name })
     })
-    .catch(e => {
-      console.log(e.message)
-    })
+    .catch(e => console.log(e.message))
   },
 
-
-  editPost({commit}, post) {
-    return axios.put(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts/${post.id}.json`, post)
+  editPost({commit, state}, post) {
+    return axios.put(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts/${post.id}.json?auth=${state.token}`, post)
       .then(res => {
         commit('editPost', post)
       })
       .catch(e => console.log(e.message))
   },
 
-  
   addComment({commit}, comment) {
     return axios.post('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json', comment)
-    .then(res => {
-        console.log(res)
-      commit('addComment', { ...comment, id: res.data.name })
-    })
-    .catch(e => {
-      console.log(e.message)
-    })
+    .catch(e => console.log(e.message))
   }
 }
 
@@ -91,6 +98,9 @@ export const getters = {
     return state.postsLoaded
   },
 
+  checkAuthUser(state) {
+    return state.token != null
+  }
 }
 
 

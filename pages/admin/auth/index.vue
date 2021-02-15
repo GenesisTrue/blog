@@ -26,9 +26,16 @@ export default {
 
   methods: {
     onSubmit() {
-      //reset
-      this.user.email = ''
-      this.user.password = ''
+      this.$store.dispatch('authUser', this.user)
+        .then(res => {
+          this.$router.push('/admin')
+        })
+        .catch(e => {
+          console.log(e.message)
+          //reset
+          this.user.email = ''
+          this.user.password = ''
+        })
     }
   },
 }
@@ -37,6 +44,7 @@ export default {
 <style lang="scss">
 .auth {
   text-align: center;
+  
 }
 .auth__form {
   display: flex;
@@ -44,7 +52,8 @@ export default {
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 70vh;
+  height: 700px;
+
   input{
     min-width: 460px;
   }
