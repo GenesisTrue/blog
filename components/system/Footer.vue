@@ -24,7 +24,6 @@ export default {
 <style lang="scss">
 
 .wrapper-footer {
-  
   display: flex;
   align-items: center;
   justify-content: center;

@@ -27,7 +27,7 @@ export default {
     onSubmit(post) {
       this.$store.dispatch('editPost', post)
         .then(() => {
-          this.$router.push('/admin')
+          this.$router.push('/admin/')
         })
     }
   },
