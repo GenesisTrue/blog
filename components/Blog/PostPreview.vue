@@ -24,6 +24,7 @@ export default {
 
   computed: {
     getLink() {
+      // debugger
       return this.admin ? `/admin/${this.post.id}` : `/blog/${this.post.id}`
     }
   }
@@ -39,10 +40,12 @@ export default {
   padding: 16px;
   margin-bottom: 20px;
   text-align: center;
+  
   img {
     // margin-bottom: 16px;
-    width: 350px;
+    width: 100%;
     border-radius: 10px;
+    max-height: 320px;
     &:hover {
       transform: scale(1.01);
     }

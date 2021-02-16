@@ -1,8 +1,9 @@
 <template>
   <client-only>
-    <commentTable :thead="['Name', 'Text', 'Status', 'Change Status', 'Delete']">
+    <commentTable :thead="['Post Name','Name', 'Text', 'Status', 'Change Status', 'Delete']">
       <tbody slot="tbody">
         <tr v-for="comment in comments" :key="comment.id">
+          <td><span> {{ comment.post_name }} </span></td>
           <td><span> {{comment.name}} </span></td>
           <td><span> {{comment.text}} </span></td>
           <td>
@@ -14,6 +15,7 @@
         </tr>
       </tbody>
     </commentTable>
+  
   </client-only>
 </template>
 
@@ -28,7 +30,7 @@ export default {
 
     data() {
     return {
-        comments: []
+        comments: [],
     }
   },
 
@@ -40,16 +42,26 @@ export default {
     loadComments() {
       axios.get('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json')
         .then(res => {
-          console.log(res)
-          
+          if(res.data === null) return this.comments
+
+          let posts = this.$store.getters.getPostsLoaded
           let commentsArray = []
+          let pn 
+
           Object.keys(res.data).forEach(key => {
             const comment = res.data[key]
-            commentsArray.push({ ...comment, id: key})
+            posts.forEach(post => {
+              if(post.id === comment.postId){
+                pn = post.title
+              }
+            })
+            commentsArray.push({ ...comment, id: key, post_name: pn })
           })
+
           this.comments = commentsArray
         })
     },
+
 
     changeComment(comment) {
       comment.publish = !comment.publish
@@ -65,6 +77,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+
 
 </style>

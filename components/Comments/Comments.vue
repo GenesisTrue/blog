@@ -30,7 +30,7 @@ export default {
     checkComments() {
       if (!this.comments.length) {
         return `No comments! You can be the first`
-    }
+      }
     }
    
   }

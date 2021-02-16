@@ -2,9 +2,24 @@
   <footer>
       <div class="wrapper-footer">
         <div class="items">
-          <a class="soc-link" href=""><img src="@/assets/img/icons/github.png" alt=""></a>
-          <a class="soc-link" href=""><img src="@/assets/img/icons/instagram.png" alt=""></a>
-          <a class="soc-link" href=""><img src="@/assets/img/icons/telegram.png" alt=""></a>
+          <a class="soc-link"
+             target="_blank"
+             href="https://github.com/GenesisTrue"
+             >
+             <img src="@/assets/img/icons/github.png" alt="">
+          </a>
+          <a class="soc-link" 
+             href="https://www.instagram.com/navruzov_n_k/"
+             target="_blank"
+             >
+             <img src="@/assets/img/icons/instagram.png" alt="">
+          </a>
+
+          <a class="soc-link"
+             href="/"
+             >
+            <img src="@/assets/img/icons/telegram.png" alt="">
+          </a>
         </div>
         <div class="text">
           Released under the MIT License <br> <br>
@@ -28,6 +43,7 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 40px;
   background-color: #475050;
   width: 100%;
   height: 200px;

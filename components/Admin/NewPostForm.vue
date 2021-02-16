@@ -9,7 +9,7 @@
 
         <div class="controls">
           <div class="btn btnDanger" @click="cancel"> Cancel </div>
-          <AppButton @click="onSubmit"> Save </AppButton>
+          <AppButton> Save </AppButton>
         </div>
       </form>
     </div>
@@ -40,7 +40,6 @@ export default {
   methods: {
     onSubmit() {
       this.post.date = new Date().toLocaleString()
-      console.log( this.post.date )
       this.$emit('submit', this.post)
     },
 

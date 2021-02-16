@@ -23,19 +23,21 @@ export default {
   components: { post, comments, newComment, myHr },
 
   async asyncData(context) {
-    let [post, comments] = await Promise.all([
+    let [post , comments] = await Promise.all([
       axios.get(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts/${context.params.id}.json`),
       axios.get(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json`)
     ])
-    // console.log('post==========',post)
-    // console.log('comments',comments)
-    
-    let commentsArrayRes = Object.values(comments.data)
+
+    let commentsArrayRes = null
+    if(comments.data) {
+       commentsArrayRes = Object.values(comments.data)
       .filter(comment => (comment.postId === context.params.id && comment.publish))
-    
+    }else{
+      commentsArrayRes = []
+    }
+
     return {
       post: post.data,
-      
       comments: commentsArrayRes
     }
   },

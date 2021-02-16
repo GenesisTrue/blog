@@ -35,6 +35,9 @@ export default {
 
 
 <style lang="scss">
+.post-list{
+  margin-bottom: 60px;
+}
 .posts__wrapper {
   display: flex;
   align-items: center;
