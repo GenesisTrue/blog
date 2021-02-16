@@ -13,6 +13,8 @@ export default {
   layout: 'admin',
 
   asyncData(context) {
+    console.log('postID context',context )
+    
       return axios.get(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts/${context.params.postId}.json`)
         .then(result => {
           return {

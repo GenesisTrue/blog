@@ -51,6 +51,9 @@ export default {
       })
       .then(() => {
         this.message = `Submited! Your comment is being verified`
+        // setTimeout(() => {
+        //   this.message = ''
+        // }, 2000)
         this.comment.name = ''
         this.comment.text = ''
       })
@@ -80,6 +83,7 @@ export default {
     }
     .contact-form {
       max-width: 600px;
+      padding: 0 30px;
       margin: 30px auto;
     }
     .controls {

@@ -4,10 +4,9 @@
 
         <!-- header -->
         <div class="post-header">
-          <img class="center" :src="post.img" alt="post.title">
+          <img class="center img" :src="post.img" alt="post.title">
           <h1 class="title "> {{ post.title }}</h1>
-          <!-- <p> {{ post.descr } </p> -->
-        </div>}
+        </div>
 
         <!-- body -->
         <div class="post-body">
@@ -25,7 +24,11 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+
+
+
+
 }
 </script>
 
@@ -34,6 +37,13 @@ export default {
 .center {
   display: block;
   margin: 0 auto;
+
+}
+.img {
+  max-width: 900px;
+  max-height: 506px;
+  box-shadow: inset 0px 0px 30px 30px rgba(0,0,0,0.9);
+
 }
 .title {
   text-align: center;
@@ -43,6 +53,7 @@ export default {
 .post-body {
   line-height: 35px;
   font-size: 20px;
+  word-break:break-all;
 }
 
 </style>

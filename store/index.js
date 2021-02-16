@@ -15,6 +15,8 @@ export const mutations = {
   },
 
   addPost(state, post) {
+    console.log('post', post)
+    
     state.postsLoaded.push(post)
   },
 
@@ -39,6 +41,7 @@ export const mutations = {
 
 
 export const actions = {
+  
   nuxtServerInit({commit}, context) {
     return axios.get('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts.json')
       .then(res => {
@@ -54,7 +57,7 @@ export const actions = {
 
   authUser({commit}, authData) {
     const key = 'AIzaSyCKEXSNW-WSFyiduEoRNzwI52DSIVBDZqs'
-
+    
     return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`, { 
       email: authData.email,
       password: authData.password,
@@ -65,14 +68,14 @@ export const actions = {
   },
 
   logoutUser({commit}) {
-    console.log('Destroy')
-    
     commit('destroyToken')
   },
 
   addPost({commit}, post) {
     return axios.post('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts.json', post)
     .then(res => {
+      console.log('res',res)
+      
       commit('addPost', { ...post, id: res.data.name })
     })
     .catch(e => console.log(e.message))
