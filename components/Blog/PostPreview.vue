@@ -1,12 +1,14 @@
 <template>
-  <nuxt-link :to="getLink" class="post-preview">
-    <img :src="post.img" :alt="post.title">
+  <div class="post-preview">
+    <nuxt-link :to="getLink" class="post-preview"> <img :src="post.img" :alt="post.title"> </nuxt-link>
     <div class="post-content">
-      <h3 class="title">{{ post.title }}</h3> 
+    <nuxt-link :to="getLink" class="post-preview">  <h3 class="title">{{ post.title }}</h3> </nuxt-link>
       <p>📅 {{ post.date }}</p>
     </div>
+  </div>
+
     
-  </nuxt-link>
+
 </template>
 
 <script>
@@ -33,9 +35,9 @@ export default {
 
 <style lang="scss">
 .post-preview {
-  // max-width: 32%;
-  width: 400px;
-  height: 396px;
+  max-width: 34%;
+  // width: 400px;
+  // height: 396px;
   padding: 16px;
   margin-bottom: 20px;
   text-align: center;
@@ -49,6 +51,7 @@ export default {
       transform: scale(1.01);
     }
   }
+
   .title {
     // height: 84px;
     text-align: left;
@@ -56,6 +59,7 @@ export default {
     margin-top: 20px;
     margin-bottom: 5px;
   }
+
   .post-content {
     p {
       padding: 10px 16px;
