@@ -4,7 +4,7 @@
     <div class="wrapper-content wrapper-content--fixed">
       <Intro title="Admin Page">
         <nuxt-link to="/admin" class="link linkWhite"> Posts </nuxt-link>
-        <nuxt-link to="/admin/new-post" class="link linkWhite"> New Post </nuxt-link>
+        <nuxt-link to="/admin/new-post" class="link linkWhite" > New Post </nuxt-link>
         <nuxt-link to="/admin/comments" class="link linkWhite"> Comments </nuxt-link>
         <span @click="logoutUser" class="link linkWhite"> Log out </span>
       </Intro>
@@ -17,6 +17,8 @@
 import Header from '~/components/system/Header'
 
 export default {
+  name: 'admin',
+
   components: { Header },
   middleware: ['auth'],
 
@@ -28,3 +30,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.linkWhite {
+ &.nuxt-link-exact-active {
+    color: rgb(1, 185, 123);
+    font-size: 22px;
+  }
+
+
+}
+
+</style>

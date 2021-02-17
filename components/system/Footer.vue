@@ -6,19 +6,19 @@
              target="_blank"
              href="https://github.com/GenesisTrue"
              >
-             <img src="@/assets/img/icons/github.png" alt="">
+             <img src="@/static/img/icons/github.png" alt="">
           </a>
           <a class="soc-link" 
              href="https://www.instagram.com/navruzov_n_k/"
              target="_blank"
              >
-             <img src="@/assets/img/icons/instagram.png" alt="">
+             <img src="@/static/img/icons/instagram.png" alt="">
           </a>
 
           <a class="soc-link"
              href="/"
              >
-            <img src="@/assets/img/icons/telegram.png" alt="">
+            <img src="@/static/img/icons/telegram.png" alt="">
           </a>
         </div>
         <div class="text">

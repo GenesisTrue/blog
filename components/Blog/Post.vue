@@ -4,8 +4,10 @@
 
         <!-- header -->
         <div class="post-header">
-          <img class="center img" :src="post.img" alt="post.title">
-          <h1 class="title "> {{ post.title }}</h1>
+          <div class="wrap-img">
+            <img class="center img" :src="post.img" alt="post.title">
+          </div>
+          <h1 class="title post-title"> {{ post.title }}</h1>
         </div>
 
         <!-- body -->
@@ -26,34 +28,32 @@ export default {
     }
   },
 
-
-
-
 }
 </script>
 
 <style lang="scss">
-
+.wrap-img{
+  box-shadow: inset 0px 0px 30px 30px rgba(0,0,0,0.9);
+  
+}
 .center {
   display: block;
   margin: 0 auto;
 
 }
 .img {
-  max-width: 900px;
-  max-height: 506px;
-  box-shadow: inset 0px 0px 30px 30px rgba(0,0,0,0.9);
-
+  position: relative;
 }
 .title {
   text-align: center;
   margin-top: 30px;
 }
 
+
 .post-body {
   line-height: 35px;
   font-size: 20px;
-  word-break:break-all;
+  // word-break:break-all;
 }
 
 </style>

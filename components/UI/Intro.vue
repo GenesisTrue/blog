@@ -21,6 +21,7 @@ export default {
 <style lang="scss">
 .intro {
   width: 100%;
+  
   margin: 20px 0;
   text-align: center;
   color: #fff;
@@ -28,11 +29,10 @@ export default {
   
   h1 {
     font-size: 26px;
+    margin-bottom: 10px;
   }
   
 }
-
-
 
 
 </style>

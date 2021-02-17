@@ -11,6 +11,7 @@ import Header from '@/components/system/Header'
 import Footer from '@/components/system/Footer'
 
 export default {
+  name: 'default',
   components: { Header, Footer }
 }
 </script>

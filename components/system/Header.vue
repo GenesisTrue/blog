@@ -22,8 +22,8 @@
 export default {
   data() {
     return {
-      links: [
-      ]
+      links: [],
+
     }
   },
 
@@ -31,25 +31,38 @@ export default {
     getPage() {
      if(this.$store.getters.checkAuthUser) {
        this.links.push(
-        { title:'Posts', url: '/admin/'},
+        { title:'Posts', url: '/admin'},
         { title:'About', url: '/about'},
-        { title:'Log In', url: '/auth'}
+        { title: `${this.statusUser}`, url: '/auth'}
         )
      }else {
        this.links.push(
         { title:'Posts', url: '/blog'},
         { title:'About', url: '/about'},
-        { title:'Log In', url: '/auth'}
+        { title:`${this.statusUser}`, url: '/auth'}
         )
      }
       return this.links
-    } 
+    },
+    
+    statusUser(){
+      if(this.$store.getters.checkAuthUser) {
+        return 'Log Out'
+      }else{
+        return 'Log In'
+      }
+    }
+
+
   }
 
 }
 </script>
 
 <style lang="scss">
+li:last-child {
+ margin-left: 40px;
+}
 .logo a{
   color: rgb(53, 73, 94);
 }

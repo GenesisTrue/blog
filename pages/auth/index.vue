@@ -17,6 +17,8 @@
 export default {
   data() {
     return {
+      // nodirnavruzov996@gmail.com
+      // '123123'
       user: {
         email: 'nodirnavruzov996@gmail.com',
         password: '123123'
