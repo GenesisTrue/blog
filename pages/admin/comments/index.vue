@@ -67,10 +67,10 @@ export default {
       comment.publish = !comment.publish
       axios.put(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments/${comment.id}.json`, comment)
     },
+    
     deleteComment(id) {
       axios.delete(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments/${id}.json`)
         .then(res => this.loadComments())
-
     },
   },
 

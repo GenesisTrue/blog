@@ -1,5 +1,9 @@
 <template>
-  <newPostForm :postEdit="post" @submit="onSubmit"></newPostForm>
+  <newPostForm
+   :postEdit="post" 
+   @submit="onSubmit" 
+   @delete="onDelete">
+  </newPostForm>
 </template>
 
 <script>
@@ -13,8 +17,6 @@ export default {
   layout: 'admin',
 
   asyncData(context) {
-    console.log('postID context',context )
-    
       return axios.get(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts/${context.params.postId}.json`)
         .then(result => {
           return {
@@ -30,6 +32,15 @@ export default {
       this.$store.dispatch('editPost', post)
         .then(() => {
           this.$router.push('/admin/')
+        })
+    },
+    onDelete(post){
+      this.$store.dispatch('deletePost', post)
+        .then(() => {
+          this.$router.push('/admin/')
+
+          console.log('onDetele')
+          
         })
     }
   },

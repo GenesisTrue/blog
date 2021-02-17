@@ -1,7 +1,7 @@
 <template>
   <section class="new-post">
     <div class="container">
-      <form @submit.prevent="onSubmit">
+      <form>
         <AppInput v-model="post.title"> Title: </AppInput>
         <AppInput v-model="post.descr"> Descr: </AppInput>
         <AppInput v-model="post.img"> Img: </AppInput>
@@ -9,8 +9,13 @@
 
         <div class="controls">
           <div class="btn btnDanger" @click="cancel"> Cancel </div>
-          <AppButton> Save </AppButton>
+          <AppButton @click.prevent="onSubmit" > Save </AppButton>
         </div>
+
+        <div class="delte-wrapper">
+           <div class="btn btnBlack" @click="onDelete"> DELETE POST </div>
+        </div>
+
       </form>
     </div>
   </section>
@@ -45,6 +50,11 @@ export default {
 
     cancel() {
       this.$router.push('/admin')
+    },
+
+    onDelete(){
+      this.$emit('delete', this.post)
+       
     }
     
   },
@@ -63,5 +73,12 @@ export default {
   }
 }
 
+.delte-wrapper {
+  text-align: right;
+  .btnBlack {
+    background-color: black;
+    color: white;
+  }
+}
 
 </style>

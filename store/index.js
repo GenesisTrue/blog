@@ -15,8 +15,6 @@ export const mutations = {
   },
 
   addPost(state, post) {
-    console.log('post', post)
-    
     state.postsLoaded.push(post)
   },
 
@@ -28,6 +26,14 @@ export const mutations = {
   addComment(state, comment) {
     state.commentsLoaded.push(comment)
   },
+  
+  deletePost(state, post){
+    state.postsLoaded = state.postsLoaded.filter(posts => {
+      return posts.id != post.id
+    })
+  },  
+
+
 
   setToken(state, token) {
     state.token =  token
@@ -45,7 +51,6 @@ export const actions = {
   nuxtServerInit({commit}, context) {
     return axios.get('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts.json')
       .then(res => {
-        debugger
         const postsArray = []
         for(let key in res.data) {
           postsArray.push( { ...res.data[key], id: key} )
@@ -75,7 +80,6 @@ export const actions = {
     return axios.post('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts.json', post)
     .then(res => {
       console.log('res',res)
-      
       commit('addPost', { ...post, id: res.data.name })
     })
     .catch(e => console.log(e.message))
@@ -87,6 +91,14 @@ export const actions = {
         commit('editPost', post)
       })
       .catch(e => console.log(e.message))
+  },
+
+  deletePost({commit, state}, post){
+    return axios.delete(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts/${post.id}.json?auth=${state.token}`, post)
+      .then(res => {
+        commit('deletePost', post)
+      })
+    
   },
 
   addComment({commit}, comment) {
