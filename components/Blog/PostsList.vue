@@ -35,7 +35,7 @@ export default {
 
 
 <style lang="scss">
-.post-list{
+.post-list {
   margin-bottom: 60px;
 }
 .posts__wrapper {

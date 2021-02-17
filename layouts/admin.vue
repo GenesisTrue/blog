@@ -23,7 +23,7 @@ export default {
   methods: {
     logoutUser() {
       this.$store.dispatch('logoutUser')
-        .then(() => this.$router.push('/admin/auth'))
+        .then(() => this.$router.push('/auth'))
     }
   }
 }
