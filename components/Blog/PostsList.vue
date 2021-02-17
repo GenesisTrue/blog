@@ -40,7 +40,7 @@ export default {
 }
 .posts__wrapper {
   display: flex;
-  align-items: center;
+  // align-items: baseline;
   justify-content: flex-start;
   flex-wrap: wrap;
 }

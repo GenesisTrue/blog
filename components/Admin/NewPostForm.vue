@@ -41,10 +41,9 @@ export default {
       }
     }
   },
-
   methods: {
     onSubmit() {
-      this.post.date = new Date().toLocaleString()
+      this.post.date  = new Date().toLocaleString().split(':',2).join(':')
       this.$emit('submit', this.post)
     },
 

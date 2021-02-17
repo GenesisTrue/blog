@@ -1,8 +1,6 @@
 <template>
   <section class="promo">
     <div class="container">
-      <h1 class="title"> Welcome to my blog</h1>
-    
     </div>
       <h2 class="title-white">
       Most of you are familiar with the virtues of a programmer. 
@@ -15,12 +13,15 @@
 export default {
 
 }
+// 1900x680 
 </script>
 
 <style lang="scss">
 .promo {
   position: relative;
-  background: url('~assets/img/nubelson.jpg') center (center/cover) no-repeat;
+  background: url('~static/img/main.jpg') center (center/cover) no-repeat;
+  box-shadow: inset 0px 0px 30px 30px rgba(0,0,0,0.5);
+  
   height: 92vh;
   text-align: center;
     p {

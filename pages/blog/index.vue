@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
 
-    <Intro title="My posts"/>
+    <Intro title="Posts"/>
     <PostsList :posts="postsLoaded"/>
 
   </div>  

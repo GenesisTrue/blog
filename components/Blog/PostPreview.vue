@@ -36,17 +36,16 @@ export default {
 <style lang="scss">
 .post-preview {
   max-width: 34%;
-  // width: 400px;
-  // height: 396px;
-  padding: 16px;
+  // height: 400px;
+  margin: 0 16px;
   margin-bottom: 20px;
-  text-align: center;
+  // text-align: center;
   
   img {
     // margin-bottom: 16px;
-    width: 100%;
+    // width: 20%;
     border-radius: 10px;
-    max-height: 320px;
+    // max-height: 320px;
     &:hover {
       transform: scale(1.01);
     }
@@ -62,7 +61,7 @@ export default {
 
   .post-content {
     p {
-      padding: 10px 16px;
+      padding: 0 16px;
       color: #999;
       text-align: justify;
     }
