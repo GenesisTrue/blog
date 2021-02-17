@@ -24,7 +24,6 @@ export default {
 
   computed: {
     getLink() {
-      // debugger
       return this.admin ? `/admin/${this.post.id}` : `/blog/${this.post.id}`
     }
   }
