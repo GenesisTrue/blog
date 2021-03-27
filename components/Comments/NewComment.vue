@@ -5,9 +5,7 @@
         <h2 class="title">New Comment</h2>
         <Message v-if="message" :message="message"/>
         <form @submit.prevent="onSubmit" class="contact-form">
-          <AppInput v-model="comment.name" type="text" >Name:</AppInput>
           <AppTextArea v-model="comment.text">Comment:</AppTextArea>
-
           <div class="controls">
             <AppButton class="btn btnPrimary"> Submit </AppButton>
           </div>
@@ -21,7 +19,6 @@
 
 
 export default {
-
   props: {
     postId: {
       type: String,
@@ -29,13 +26,10 @@ export default {
     }
   },
 
-
-
   data() {
     return {
       message: null,
       comment: {
-        name: '',
         text: ''
       }
     }
@@ -43,10 +37,9 @@ export default {
 
   methods: {
     onSubmit() {
-      
       this.$store.dispatch('addComment', {
-        postId: this.postId,
-        publish: false,
+        post_id: this.postId,
+        user_id: this.postId,
         date: new Date().toLocaleString(),
         ...this.comment
       })
@@ -55,11 +48,9 @@ export default {
         setTimeout(() => {
           this.message = ''
         }, 2000)
-        this.comment.name = ''
         this.comment.text = ''
       })
       .catch(e => console.log(e.message))
-
     }
   }
 }
