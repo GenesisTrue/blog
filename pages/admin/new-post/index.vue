@@ -11,6 +11,7 @@ export default {
 
   methods: {
     onSubmit(post) {
+      
       this.$store.dispatch('addPost', post)
         .then(() => {
           this.$router.push('/admin')
@@ -18,7 +19,7 @@ export default {
         .catch((err) => {
           console.log(err.message)
         });      
-    },
+    },  
 
   
   },

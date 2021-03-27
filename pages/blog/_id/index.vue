@@ -21,23 +21,31 @@ import myHr from '~/components/Hr/MyHr'
 
 export default {
   components: { post, comments, newComment, myHr },
-
+  
   async asyncData(context) {
-    let [post , comments] = await Promise.all([
-      axios.get(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/posts/${context.params.id}.json`),
-      axios.get(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json`)
+    let [post, comments] = await Promise.all([
+      axios.get(`http://127.0.0.1:8080/api/posts/userPosts/${context.params.id}`, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }),
+      axios.get(`http://127.0.0.1:8080/api/comments/commentsOnPost/${context.params.id}`, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
     ])
 
     let commentsArrayRes = null
     if(comments.data) {
-       commentsArrayRes = Object.values(comments.data)
-      .filter(comment => (comment.postId === context.params.id && comment.publish))
+      commentsArrayRes = Object.values(comments.data)
+      .filter(comment => (comment.post_id == context.params.id && comment.status))
     }else{
       commentsArrayRes = []
     }
 
     return {
-      post: post.data,
+      post: post.data[0],
       comments: commentsArrayRes
     }
   },

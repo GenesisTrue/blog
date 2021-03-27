@@ -8,7 +8,7 @@
           </div>
           <ul class="navbar-list">
             <li class="navbar-item" v-for="(link, index) in getPage" :key="index">
-              <nuxt-link class="navbar-link" :title="link.title" :to="link.url">{{ link.title }}</nuxt-link>
+              <nuxt-link class="navbar-link" :title="link.title" :to="link.url" @click="logOut">{{ link.title }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -23,38 +23,43 @@ export default {
   data() {
     return {
       links: [],
-
     }
   },
-
   computed: {
+    //  statusUser(){
+    //   if(this.$store.getters.checkAuthUser) {
+    //     return 'Log Out'
+
+    //   }else{
+    //     return 'Log In'
+    //   }
+    // },
     getPage() {
-     if(this.$store.getters.checkAuthUser) {
-       this.links.push(
-        { title:'Posts', url: '/admin'},
-        { title:'About', url: '/about'},
-        { title: `${this.statusUser}`, url: '/auth'}
-        )
-     }else {
-       this.links.push(
-        { title:'Posts', url: '/blog'},
-        { title:'About', url: '/about'},
-        { title:`${this.statusUser}`, url: '/auth'}
-        )
-     }
+      // debugger
+        if(this.$store.getters.checkAuthUser) {
+          this.links.push(
+            { title:'Posts', url: '/blog'},
+            { title:'About', url: '/about'},
+            { title:'Log out', url: '/auth'},
+          )
+        }else{
+            this.links.push(
+            { title:'Posts', url: '/blog'},
+            { title:'About', url: '/about'},
+            { title:'Log in', url: '/auth'},
+          )
+        }
+
+
+  
       return this.links
     },
-    
-    statusUser(){
-      if(this.$store.getters.checkAuthUser) {
-        return 'Log Out'
-      }else{
-        return 'Log In'
-      }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('logoutUser')
     }
-
-
-  }
+  },
 
 }
 </script>

@@ -16,7 +16,7 @@
           </a>
 
           <a class="soc-link"
-             href="/"
+             href="#"
              >
             <img src="@/static/img/icons/telegram.png" alt="">
           </a>

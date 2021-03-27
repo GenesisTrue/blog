@@ -20,26 +20,32 @@ export default {
       // nodirnavruzov996@gmail.com
       // '123123'
       user: {
-        email: 'nodirnavruzov996@gmail.com',
+        email: 'alfa@mail.ru',
         password: '123123'
       }
     }
   },
 
   methods: {
-    onSubmit() {
+      onSubmit() {
       this.$store.dispatch('authUser', this.user)
         .then(res => {
           this.$router.push('/admin')
         })
         .catch(e => {
           console.log(e.message)
-          //reset
           this.user.email = ''
           this.user.password = ''
         })
     }
   },
+  // created() {
+  // const token = context.store.getters.getToken
+  // const localToken = window.localStorage.getItem('token')
+  //   if(token === localToken ) {
+  //     console.log('auth')
+  //   }
+  // }
 }
 </script>
 

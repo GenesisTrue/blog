@@ -42,12 +42,12 @@ export default {
   methods: {
     onSubmit() {
       this.message = 'Submited'
-      // setTimeout(() => {
-      //   this.message = ''
-      //   }, 2000)
-      this.user.name = ''      
-      this.user.email = ''      
-      this.user.text = ''      
+      setTimeout(() => {
+        this.message = ''
+      }, 2000)
+        this.user.name = ''      
+        this.user.email = ''      
+        this.user.text = ''      
     }
   }
 }
