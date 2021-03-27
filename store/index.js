@@ -151,8 +151,8 @@ export const actions = {
   /* Add new comment  */
 
   addComment({commit}, comment) {
-    
-    return axios.post('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json', comment)
+    console.log('comment: ', comment)
+    return axios.post('http://127.0.0.1:8080/api/comments/addComment', comment)
     .catch(e => console.log(e.message))
   }
 
