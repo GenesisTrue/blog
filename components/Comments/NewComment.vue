@@ -43,6 +43,7 @@ export default {
 
   methods: {
     onSubmit() {
+      
       this.$store.dispatch('addComment', {
         postId: this.postId,
         publish: false,
@@ -51,9 +52,9 @@ export default {
       })
       .then(() => {
         this.message = `Submited! Your comment is being verified`
-        // setTimeout(() => {
-        //   this.message = ''
-        // }, 2000)
+        setTimeout(() => {
+          this.message = ''
+        }, 2000)
         this.comment.name = ''
         this.comment.text = ''
       })
@@ -79,7 +80,7 @@ export default {
     text-align: center;
     background-color: #ffffff;
     .title {
-      color: #35495e;
+      color: #35495e; 
     }
     .contact-form {
       max-width: 600px;

@@ -5,14 +5,14 @@
         <!-- header -->
         <div class="post-header">
           <div class="wrap-img">
-            <img class="center img" :src="post.img" alt="post.title">
+            <img class="center img" :src="post.post_image" alt="post.post_title">
           </div>
-          <h1 class="title post-title"> {{ post.title }}</h1>
+          <h1 class="title post-title"> {{ post.post_title }}</h1>
         </div>
 
         <!-- body -->
         <div class="post-body">
-          <p> {{ post.content }} </p>
+          <p> {{ post.post_content }} </p>
         </div>
         
       </div>

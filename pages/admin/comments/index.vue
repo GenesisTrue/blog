@@ -43,27 +43,28 @@ export default {
       axios.get('https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments.json')
         .then(res => {
           if(res.data === null) return this.comments
-
           let posts = this.$store.getters.getPostsLoaded
           let commentsArray = []
           let pn 
-
+          let userId = this.$store.getters.getLocalId
+            
           Object.keys(res.data).forEach(key => {
+
             const comment = res.data[key]
+
             posts.forEach(post => {
-              if(post.id === comment.postId){
+              if(post.postId === comment.postId && post.userId === userId ) {
                 pn = post.title
+                commentsArray.push({ ...comment, id: key, post_name: pn })
               }
             })
-            commentsArray.push({ ...comment, id: key, post_name: pn })
           })
 
           this.comments = commentsArray
         })
     },
-
-
     changeComment(comment) {
+
       comment.publish = !comment.publish
       axios.put(`https://blog-nuxt-11cab-default-rtdb.firebaseio.com/comments/${comment.id}.json`, comment)
     },

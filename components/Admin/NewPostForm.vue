@@ -13,7 +13,7 @@
         </div>
 
         <div class="delte-wrapper">
-           <div class="btn btnBlack" @click="onDelete"> DELETE POST </div>
+           <div class="btn btnBlack" @click.prevent="onDelete"> DELETE POST </div>
         </div>
 
       </form>
@@ -31,7 +31,7 @@ export default {
   
   data() {
     return {
-      post: this.postEdit ? { ...this.postEdit } : {
+      post:   {
         title: '',
         descr: '',
         img: '',
@@ -41,10 +41,18 @@ export default {
       }
     }
   },
+  mounted() {
+    if (this.postEdit) {
+      this.post = this.postEdit
+    }
+  },
   methods: {
     onSubmit() {
       this.post.date  = new Date().toLocaleString().split(':',2).join(':')
+      this.post.userId = this.$store.getters.getLocalId
+
       this.$emit('submit', this.post)
+      // this.$router.push('/admin')
     },
 
     cancel() {
@@ -52,7 +60,9 @@ export default {
     },
 
     onDelete(){
+      
       this.$emit('delete', this.post)
+      this.$router.push('/admin')
        
     }
     
